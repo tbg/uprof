@@ -16,8 +16,6 @@ package uprof
 
 import (
 	"strconv"
-
-	"github.com/cockroachdb/cockroach/pkg/util/humanizeutil"
 )
 
 type UnitFunc func(int64) string
@@ -34,7 +32,9 @@ func Count() Unit {
 
 func Bytes() Unit {
 	return UnitFunc(func(n int64) string {
-		return humanizeutil.IBytes(n)
+		return strconv.FormatInt(n, 10)
+		// TODO(tbg): import crashes vgo.
+		// return humanizeutil.IBytes(n)
 	})
 }
 
